@@ -1,0 +1,4 @@
+<p>{{Question.name}}</p>
+<form (change)="onSubmit(form)" #form="ngForm">
+    <input *ngFor="let question of Question.answers" type="radio" value="{{question.nameString}}" name="question" ngModel>
+</form>
