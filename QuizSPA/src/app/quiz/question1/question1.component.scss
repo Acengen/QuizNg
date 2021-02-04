@@ -1,0 +1,50 @@
+.question-overlay{
+    background-color: rgba(0, 132, 255, 0.815);
+    padding: 20px;
+    height: 100vh;
+    color: white;
+    position: relative;
+    .question {
+        
+        width: 900px;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgb(0, 132, 255);
+        p {
+            font-size: 30px;
+            text-align: center;
+        }
+        form {
+            label {
+                display: block;
+                font-size: 20px;
+                padding: 20px;
+                &:hover {
+                    background-color: rgb(28, 74, 117);
+                    cursor: pointer;
+                }
+
+                input {
+                    visibility: hidden;
+                }
+            }
+            
+        }
+
+        @media(max-width:990px) {
+           width: 100%;
+        }
+
+        @media(max-width:767px) {
+            p {
+                font-size: 25px;
+                text-align: left;
+            }
+         }
+    }
+}
+
+

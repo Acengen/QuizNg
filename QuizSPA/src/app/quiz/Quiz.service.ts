@@ -11,4 +11,9 @@ export class QuizService {
   getQuestion(id:number) {
     return this.http.get<Question>("http://localhost:5000/quiz/" + id);
   }
+
+  answerAquestion(yourAnswer:string,id:number){
+    this.http.post<any>("http://localhost:5000/quiz/answered/" + id, yourAnswer).subscribe(resData => {
+    })
+  }
 }

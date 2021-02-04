@@ -21,6 +21,13 @@ namespace QuizAPI.Repo
 
         }
 
+        public async Task<IEnumerable<Answered>> GetAnswered()
+        {
+            var answered = await _context.Answereds.ToListAsync();
+
+            return answered;
+        }
+
         public async Task<Question> GetQuestion(int id)
         {
             var question = await _context.Questions.Include(a => a.Answers).FirstOrDefaultAsync(q => q.Id == id);

@@ -1,6 +1,6 @@
 import { QuizService } from './../Quiz.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 import { Question } from '../interface/Question';
 import { NgForm } from '@angular/forms';
 
@@ -11,7 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class Question1Component implements OnInit {
   currentRoute: number;
-  Question: Question;
+  questions: Question;
+  incrementAns:number=0;
   constructor(
     private route: ActivatedRoute,
     private srvc: QuizService,
@@ -19,22 +20,27 @@ export class Question1Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((param: Params) => {
-      this.currentRoute = +param['id'];
-      console.log(this.currentRoute);
-      this.srvc.getQuestion(+param['id']).subscribe((res) => {
-        this.Question = res;
+    this.route.data.subscribe((data: Data) => {
+      if(data.data === null){
+        this.router.navigate(['/'])
+      }
+      this.currentRoute = data.data.id
+      this.srvc.getQuestion(data.data.id).subscribe((res) => {
+        this.questions = res;
       });
     });
   }
 
   onSubmit(f: NgForm) {
-    if (f.value.question) {
+    
+    this.srvc.answerAquestion(f.value,this.currentRoute)
+    if (f.value.yourAnswer) {
       this.currentRoute++;
       this.router.navigate(['question', this.currentRoute], {
         queryParams: { hello: 'anotherone' },
       });
-      localStorage.setItem("Submitted",f.value.question);
     }
+   
   }
+
 }

@@ -3,5 +3,5 @@ export interface Question {
     name:string,
     points:number,
     correctAnswer:string,
-    answers:any
+    answers:any,
 }

@@ -1,4 +1,11 @@
-<p>{{Question.name}}</p>
-<form (change)="onSubmit(form)" #form="ngForm">
-    <input *ngFor="let question of Question.answers" type="radio" value="{{question.nameString}}" name="question" ngModel>
-</form>
+<div *ngIf="questions" class="question-overlay">
+   <div class="question">
+    <p>{{questions.name}}</p>
+    <form (change)="onSubmit(form)" #form="ngForm">
+        <label *ngFor="let question of questions.answers;let i = index">{{i+1}}
+            <input type="radio" value="{{question.nameString}}" name="yourAnswer" ngModel>{{question.nameString}}
+        </label>
+    </form>
+   </div>
+</div>
+
