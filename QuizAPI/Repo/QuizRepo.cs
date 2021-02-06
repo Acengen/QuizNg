@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using QuizAPI.Data;
-using QuizAPI.Dto;
 using QuizAPI.Model;
 
 namespace QuizAPI.Repo

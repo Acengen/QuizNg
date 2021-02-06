@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuizAPI.Data;
-using QuizAPI.Dto;
 using QuizAPI.Model;
 using QuizAPI.Repo;
 
@@ -31,8 +32,7 @@ namespace QuizAPI.Controllers
         {
             var questionRepo = await _repo.getQuestions();
 
-            var questionToRetrun = _mapper.Map<IEnumerable<QuestionDto>>(questionRepo);
-            return Ok(questionToRetrun);
+            return Ok(questionRepo);
         }
 
         [HttpGet("{id}")]
@@ -60,6 +60,8 @@ namespace QuizAPI.Controllers
             }
             answered.QuestionName = questionRepo.Name;
             answered.CorrectAnswer = questionRepo.CorrectAnswer;
+            
+            questionRepo.isAnswered = true;
 
             if(questionRepo.CorrectAnswer == answered.YourAnswer){
                   answered.PointEarned = questionRepo.Points;
@@ -71,6 +73,25 @@ namespace QuizAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(answered);
+        }
+
+        [HttpDelete("deleteData")]
+        public async Task<IActionResult> DeleteData()
+        {
+
+            var answeredrepo = await _repo.GetAnswered();
+            var qu = _context.Questions.Include(a => a.Answers).ToList();
+
+            for (int i = 0; i < qu.Count; i++)
+            {
+                qu[i].isAnswered = false;
+            }
+
+            _context.Answereds.RemoveRange(answeredrepo);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(qu);
         }
 
     }

@@ -1,5 +1,4 @@
 using AutoMapper;
-using QuizAPI.Dto;
 using QuizAPI.Model;
 
 namespace QuizAPI.helper
@@ -8,8 +7,8 @@ namespace QuizAPI.helper
     {
        public Automapper()
        {
-           CreateMap<QuestionDto,Question>();
-           CreateMap<Question,QuestionDto>();
+         
+
        }
     }
 }

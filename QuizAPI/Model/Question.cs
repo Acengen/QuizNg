@@ -11,6 +11,8 @@ namespace QuizAPI.Model
 
         public string CorrectAnswer { get; set; }
 
+        public bool isAnswered { get; set; }
+
         public ICollection<Answer> Answers {get;set;}
     }
 }
