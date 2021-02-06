@@ -1,11 +1,14 @@
-<div *ngIf="questions" class="question-overlay">
+<div class="question-overlay">
+    <p class="answer_correct bg-success" *ngIf="answerCorrected ===true">Answer correct</p>
+    <p class="answer_correct bg-danger" *ngIf="answerCorrected === false">Answer incorrect</p>
    <div class="question">
     <p>{{questions.name}}</p>
     <form (change)="onSubmit(form)" #form="ngForm">
-        <label *ngFor="let question of questions.answers;let i = index">{{i+1}}
-            <input type="radio" value="{{question.nameString}}" name="yourAnswer" ngModel>{{question.nameString}}
+        <label *ngFor="let question of questions.answers;let i = index">{{i+1}}.)
+            <input  type="radio" value="{{question.nameString}}" name="yourAnswer" ngModel>{{question.nameString}}
         </label>
     </form>
+    <button (click)="resetQuiz()" class="btn btn-sm btn-warning">Reset Quiz</button>  
    </div>
 </div>
 

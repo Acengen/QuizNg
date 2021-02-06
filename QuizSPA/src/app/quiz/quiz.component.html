@@ -1,2 +1,30 @@
-<h3>HELLOOOO</h3>
-<button [routerLink]="['/question',1]" [queryParams]="{'Hello':'quiz'}" >START QUIZ</button>
+<div class="quiz">
+    <div class="quiz_author">
+        <h3>Author</h3>
+        <p>Djordje Kocic</p>
+    </div>
+   <div class="guiz_overlay_gallery">
+    <div class="quiz_gallery">
+        <h3>Zdravo ucenici,</h3>
+        <p>jel ste spremni za kviz?</p>
+        <img  src="{{imageToShow}}">
+    </div>
+   </div>
+    <div class="card">
+        <div class="card-body">
+            <p *ngIf="transData.length === 0">Quiz completed</p>
+            <div class="quiz_body">
+                <div>
+                    <h3>Quiz (questions&answers)</h3>
+                    <p>{{transData.length}}/{{globalData.length}} questions</p>
+                </div>
+                <div>
+                    <button [disabled]="transData.length === 0" *ngIf="transData.length >= 7" (click)="goToPage()">Start</button>
+                    <button [disabled]="transData.length === 0" *ngIf="transData.length < 7" (click)="goToPage()">Continue</button>
+                    <button *ngIf="transData.length === 0" (click)="resetQuiz()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

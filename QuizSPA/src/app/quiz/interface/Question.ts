@@ -4,4 +4,5 @@ export interface Question {
     points:number,
     correctAnswer:string,
     answers:any,
+    isAnswered:boolean
 }
