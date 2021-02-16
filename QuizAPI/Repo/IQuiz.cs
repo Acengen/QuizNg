@@ -9,5 +9,6 @@ namespace QuizAPI.Repo
         Task<IEnumerable<Question>> getQuestions();
         Task<Question> GetQuestion(int id);
         Task<IEnumerable<Answered>> GetAnswered();
+
     }
 }

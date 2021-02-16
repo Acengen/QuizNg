@@ -20,6 +20,7 @@ export class QuizService {
       this.transData = resData.filter(v => !v.isAnswered)
     }))
   }
+ 
 
   getQuestion(id:number) {
     return this.http.get<Question>("http://localhost:5000/quiz/" + id).pipe(

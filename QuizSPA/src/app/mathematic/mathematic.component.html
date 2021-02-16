@@ -1,0 +1,21 @@
+<div class="mix_numbers_flex">
+  <div class="bigNumber">
+    <div *ngIf="bignumber">{{bignumber.bigNumber}}</div>
+  </div>
+    <div class="mixNumbers">
+      <!-- <app-numbersItem *ngFor="let num of numbersToSum" [numberSum]="num"></app-numbersItem> -->
+        <div *ngFor="let num of numbersToSum">
+          <input name="number" type="button" [value]="num.number">
+        </div>
+        <form (input)="onChange(f)" #f="ngForm">
+          <input type="text" name="number" id="" ngModel>
+        </form> 
+    </div>
+  <!-- <div class="mathoperators">
+    <div (click)="onChange(mathoperator)" *ngFor="let mathoperator of mathOp">{{mathoperator}}</div>
+  </div> -->
+  <div>
+    <button *ngIf="!bignumber" (click)="postNumber()">GENERATE NUMBER</button>
+    <button *ngIf="!bignumber" (click)="postBigNumber()">GENERATE BIG NUMBER</button>
+  </div>
+</div>

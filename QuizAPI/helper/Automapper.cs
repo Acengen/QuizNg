@@ -8,7 +8,7 @@ namespace QuizAPI.helper
        public Automapper()
        {
          
-
+           
        }
     }
 }

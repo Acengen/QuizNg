@@ -6,13 +6,13 @@
    <div class="guiz_overlay_gallery">
     <div class="quiz_gallery">
         <h3>Zdravo ucenici,</h3>
-        <p>jel ste spremni za kviz?</p>
-        <img  src="{{imageToShow}}">
+        <p>jeste li spremni za kviz?</p>
+        <!-- <img  src="{{imageToShow}}"> -->
     </div>
    </div>
     <div class="card">
         <div class="card-body">
-            <p *ngIf="transData.length === 0">Quiz completed</p>
+            <p style="color: white;font-weight: 200;" *ngIf="transData.length === 0">Quiz completed</p>
             <div class="quiz_body">
                 <div>
                     <h3>Quiz (questions&answers)</h3>
@@ -22,6 +22,20 @@
                     <button [disabled]="transData.length === 0" *ngIf="transData.length >= 7" (click)="goToPage()">Start</button>
                     <button [disabled]="transData.length === 0" *ngIf="transData.length < 7" (click)="goToPage()">Continue</button>
                     <button *ngIf="transData.length === 0" (click)="resetQuiz()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <p style="color: white;font-weight: 200;" *ngIf="transData.length === 0">Quiz completed</p>
+            <div class="quiz_body">
+                <div>
+                    <h3>Math Quiz</h3>
+                    <p>{{transData.length}}/{{globalData.length}} questions</p>
+                </div>
+                <div>
+                    <button [routerLink]="['/math']" >Start</button>
                 </div>
             </div>
         </div>

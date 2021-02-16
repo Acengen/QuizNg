@@ -13,6 +13,10 @@ namespace QuizAPI.Data
        public DbSet<Question> Questions {get;set;}
        public DbSet<Answer> Answers {get;set;}
        public DbSet<Answered> Answereds {get;set;}
-        
+      
+        public DbSet<Mathematic> Mathematic {get;set;}
+
+        public DbSet<MixNumber> MixNumber {get;set;}
+      
     }
 }

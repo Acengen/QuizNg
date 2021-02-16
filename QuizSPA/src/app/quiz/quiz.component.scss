@@ -1,12 +1,12 @@
 .quiz {
-  
+  background-color: whitesmoke;
   .guiz_overlay_gallery {
     padding: 40px 0px;
     .quiz_gallery {
       text-align: center;
       img {
-        width: 600px;
-        height: auto;
+        width: 400px;
+        height: 500px;
       }
     }
     p {
@@ -32,7 +32,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   .quiz_body {
-    z-index: 99999;
+    
     display: flex;
     justify-content: space-between;
 
@@ -42,14 +42,11 @@
       align-self: flex-start;
     }
     div:nth-child(2) {
-      align-self: flex-end;
-      height: 100px;
-      width: 100px;
+      
       button {
         border: none !important;
         padding: 10px;
         font-weight: bold;
-        width: 100%;
         height: 100%;
         border-radius: 5px;
 

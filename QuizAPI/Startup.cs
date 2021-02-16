@@ -33,8 +33,7 @@ namespace QuizAPI
             services.AddControllers();
             services.AddCors();
             services.AddScoped<IQuiz,QuizRepo>();
-             services.AddAutoMapper(typeof(Question).Assembly);
-           
+            services.AddAutoMapper(typeof(Question).Assembly);
             services.AddDbContext<MyContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 

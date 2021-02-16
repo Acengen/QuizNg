@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuizAPI.Data;
 
 namespace QuizAPI.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20210208131407_ChangesOverMathTAbleandNumberTAble")]
+    partial class ChangesOverMathTAbleandNumberTAble
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,34 +64,36 @@ namespace QuizAPI.Migrations
                     b.ToTable("Answereds");
                 });
 
-            modelBuilder.Entity("QuizAPI.Model.Mathematic", b =>
+            modelBuilder.Entity("QuizAPI.Model.MathRandom", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("BigNumber")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Mathematic");
+                    b.ToTable("Maths");
                 });
 
-            modelBuilder.Entity("QuizAPI.Model.MixNumber", b =>
+            modelBuilder.Entity("QuizAPI.Model.Number", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("Number")
+                    b.Property<int>("MathRandomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("number")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("MixNumber");
+                    b.HasIndex("MathRandomId");
+
+                    b.ToTable("Number");
                 });
 
             modelBuilder.Entity("QuizAPI.Model.Question", b =>
@@ -125,6 +129,22 @@ namespace QuizAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("QuizAPI.Model.Number", b =>
+                {
+                    b.HasOne("QuizAPI.Model.MathRandom", "MathRandom")
+                        .WithMany("numbers")
+                        .HasForeignKey("MathRandomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MathRandom");
+                });
+
+            modelBuilder.Entity("QuizAPI.Model.MathRandom", b =>
+                {
+                    b.Navigation("numbers");
                 });
 
             modelBuilder.Entity("QuizAPI.Model.Question", b =>

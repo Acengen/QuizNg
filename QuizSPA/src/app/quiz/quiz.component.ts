@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { transformAll } from '@angular/compiler/src/render3/r3_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -23,11 +24,12 @@ export class QuizComponent implements OnInit {
     this.serivce.getQuestions().subscribe(res => {
       this.globalData = res
       this.transData = this.serivce.transData;
-      console.log(this.transData)
        if(this.transData.length !== 0){
         this.routeToContinue = this.transData[0].id;
        }
     })
+
+   
   }
 
   goToPage() {
